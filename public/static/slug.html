@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Lora&family=Merriweather:wght@300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <title>I am thankful for...</title>
+</head>
+<body>
+  <div id="app" v-cloak>
+    <div v-if="thanks">
+      <h2>{{thanks.name}},</h2>
+      <p class="help">{{thanks.message}}</p>
+      <p class="help">&mdash; {{from}}</p>
+    </div>
+  </div>
+  <script type="module" src="slug.js"></script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Lora&family=Merriweather:wght@300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <title>I am thankful for...</title>
+</head>
+<body>
+  <div id="app" v-cloak>
+    <h1 v-if="!url">I am thankful for...</h1>
+    <progress v-if="loading" class="progress is-small is-primary" max="100">15%</progress>
+    <div v-if="error" class="notification is-danger">
+      <p class="help">{{error}}</p>
+    </div>
+    <form v-if="!url" @submit.prevent="createThanks">
+      <fieldset :disabled="loading">
+        <div class="field">
+          <div class="control">
+            <input v-model="thanks.name" class="input" type="text" placeholder="Enter a name">
+          </div>
+        </div>
+        <div class="field">
+          <div class="control">
+            <textarea v-model="thanks.message" class="textarea" placeholder="Enter a message."></textarea>
+          </div>
+        </div>
+        <p class="help">The slug is what will be in the URL. This is optional.</p>
+        <div class="field has-addons">
+          <p class="control">
+            <a class="button is-static">
+              thankfulfor.xyz/
+            </a>
+          </p>
+          <p class="control">
+            <input v-model="thanks.slug" class="input" type="text" placeholder="slug-here">
+          </p>
+        </div>
+        <button :class="{ 'is-loading': loading }" type="submit" class="button is-primary">Create</button>
+      </fieldset>
+    </form>
+    <div v-if="url">
+      <div>
+        <p>Your thanks is ready to share!</p>
+        <a :href="url" target="_blank">{{url}}</a>
+      </div>
+    </div>
+  </div>
+  <script type="module" src="client.js"></script>
+</body>
+</html>
