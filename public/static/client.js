@@ -8,6 +8,7 @@ const App = {
     const url = ref('');
     const loading = ref(false);
     const error = ref('');
+    const from = ref('');
     const thanks = reactive({
       name: '',
       message: '',
@@ -33,7 +34,10 @@ const App = {
           thanks.name = '';
           thanks.message = '';
           thanks.slug = '';
-          url.value = `${window.location.origin}/${json.slug}`;
+          const base_url = `${window.location.origin}/${json.slug}`;
+          from.value = from.value.trim();
+          url.value = from.value !== '' ? `${base_url}?from=${from.value}` : base_url;
+          from.value = '';
         } else {
           error.value = json.message;
         }

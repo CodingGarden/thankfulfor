@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,6 +10,7 @@
   <link rel="stylesheet" href="styles.css">
   <title>I am thankful for...</title>
 </head>
+
 <body>
   <div id="app" v-cloak>
     <h1 v-if="!url">I am thankful for...</h1>
@@ -27,6 +29,16 @@
           <div class="control">
             <textarea v-model="thanks.message" class="textarea" placeholder="Enter a message."></textarea>
           </div>
+        </div>
+        <div class="field has-addons">
+          <p class="control">
+            <a class="button is-static">
+              From
+            </a>
+          </p>
+          <p class="control">
+            <input v-model="from" class="input" type="text" placeholder="Your name here">
+          </p>
         </div>
         <p class="help">The slug is what will be in the URL. This is optional.</p>
         <div class="field has-addons">
@@ -51,4 +63,5 @@
   </div>
   <script type="module" src="client.js"></script>
 </body>
+
 </html>
