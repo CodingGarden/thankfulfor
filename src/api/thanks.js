@@ -9,7 +9,7 @@ const schema = Joi.object({
   name: Joi.string().min(2).max(40).required(),
   message: Joi.string().min(1).max(280).required(),
   slug: Joi.string().min(2).max(100)
-    .pattern(/^[0-9a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð\-_]+$/u),
+    .pattern(/^[0-9a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ðאבגדהוזחטיכלמנסעפצקרשת\-_]+$/u),
 });
 
 const router = express.Router();
