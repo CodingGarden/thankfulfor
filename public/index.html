@@ -16,51 +16,56 @@
     <div v-if="error" class="notification is-danger">
       <p class="help">{{error}}</p>
     </div>
-    <form v-if="!url" @submit.prevent="createThanks">
-      <fieldset :disabled="loading">
-        <div class="field">
-          <div class="control">
-            <input v-model="thanks.name" class="input" type="text" placeholder="Enter a name">
+    <div class="columns">
+      <div class="column">
+        <form v-if="!url" @submit.prevent="createThanks">
+          <fieldset :disabled="loading">
+            <div class="field">
+              <div class="control">
+                <input v-model="thanks.name" class="input" type="text" placeholder="Enter a name">
+              </div>
+            </div>
+            <div class="field">
+              <div class="control">
+                <textarea v-model="thanks.message" class="textarea" placeholder="Enter a message."></textarea>
+              </div>
+              <p class="help">Your message must be 280 characters or less. ({{thanks.message.length}} / 280)</p>
+            </div>
+            <p class="help">The slug is what will be in the URL. This is optional.</p>
+            <div class="field has-addons">
+              <p class="control">
+                <a class="button is-static">
+                  thankfulfor.xyz/
+                </a>
+              </p>
+              <p class="control">
+                <input v-model="thanks.slug" class="input" type="text" placeholder="slug-here">
+              </p>
+            </div>
+            <div class="field">
+              <div class="control">
+                <input v-model="thanks.from" class="input" type="text" placeholder="Enter your name (optional)">
+              </div>
+            </div>
+            <hr>
+            <button :class="{ 'is-loading': loading }" type="submit" class="button is-primary">Create</button>
+          </fieldset>
+        </form>
+      </div>
+      <div class="column">
+        <p class="help mb-4"><em>Your thanks message will look like this:</em></p>
+        <div class="thanks-message">
+          <div class="card">
+            <h2>{{thanks.name || "Name Here"}},</h2>
+            <p class="help">{{thanks.message || "Your message here."}}</p>
+            <p class="help">&mdash; {{thanks.from || "Anonymous"}}</p>
           </div>
         </div>
-        <div class="field">
-          <div class="control">
-            <textarea v-model="thanks.message" class="textarea" placeholder="Enter a message."></textarea>
-          </div>
-          <p class="help">Your message must be 280 characters or less. ({{thanks.message.length}} / 280)</p>
-        </div>
-        <p class="help">The slug is what will be in the URL. This is optional.</p>
-        <div class="field has-addons">
-          <p class="control">
-            <a class="button is-static">
-              thankfulfor.xyz/
-            </a>
-          </p>
-          <p class="control">
-            <input v-model="thanks.slug" class="input" type="text" placeholder="slug-here">
-          </p>
-        </div>
-        <div class="field">
-          <div class="control">
-            <input v-model="thanks.from" class="input" type="text" placeholder="Enter your name (optional)">
-          </div>
-        </div>
-        <hr>
-        <button :class="{ 'is-loading': loading }" type="submit" class="button is-primary">Create</button>
-      </fieldset>
-    </form>
+    </div>
     <div v-if="url">
       <div>
         <p>Your thanks is ready to share!</p>
         <a :href="url" target="_blank">{{url}}</a>
-      </div>
-    </div>
-    <p class="help"><em>Your thanks message will look like this:</em></p>
-    <div class="thanks-message">
-      <div class="card">
-        <h2>{{thanks.name || "Name Here"}},</h2>
-        <p class="help">{{thanks.message || "Your message here."}}</p>
-        <p class="help">&mdash; {{thanks.from || "Anonymous"}}</p>
       </div>
     </div>
   </div>
