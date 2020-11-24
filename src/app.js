@@ -17,10 +17,20 @@ app.use(helmet({
 }));
 app.use(cors());
 app.use(express.json());
-app.use(express.static(path.join(__dirname, '..', 'public', 'static')));
+app.use(express.static(path.join(__dirname, '..', 'public')));
+
+/** Needed for vercel */
+app.get('/js/client.js', (req, res) => {
+  res.sendFile(path.join(__dirname, '..', 'public', 'js', 'client.js'));
+});
+
+app.get('/js/slug.js', (req, res) => {
+  res.sendFile(path.join(__dirname, '..', 'public', 'js', 'slug.js'));
+});
+/** Needed for vercel */
 
 app.get('/:slug', (req, res) => {
-  res.sendFile(path.join(__dirname, '..', 'public', 'static', 'slug.html'));
+  res.sendFile(path.join(__dirname, '..', 'public', 'slug.html'));
 });
 
 app.use('/api/v1', api);
