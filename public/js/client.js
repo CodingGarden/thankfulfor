@@ -36,7 +36,7 @@ const App = {
         if (response.ok) {
           let shareUrl = `${window.location.origin}/${json.slug}`;
           if (from) {
-            shareUrl = `${url}?from=${from}`;
+            shareUrl = `${shareUrl}?from=${from}`;
           }
           url.value = shareUrl;
         } else {
