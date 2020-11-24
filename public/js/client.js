@@ -12,14 +12,17 @@ const App = {
       name: '',
       message: '',
       slug: '',
+      from: '',
     });
 
     const createThanks = async () => {
       error.value = '';
       loading.value = true;
+      const { from } = thanks;
       if (!thanks.slug) {
         thanks.slug = undefined;
       }
+      thanks.from = undefined;
       const response = await fetch('/api/v1/thanks', {
         method: 'POST',
         headers: {
@@ -27,13 +30,14 @@ const App = {
         },
         body: JSON.stringify(thanks),
       });
+      thanks.from = from;
       const json = await response.json();
       setTimeout(() => {
         if (response.ok) {
           thanks.name = '';
           thanks.message = '';
           thanks.slug = '';
-          url.value = `${window.location.origin}/${json.slug}`;
+          url.value = `${window.location.origin}/${json.slug}?from=${from}`;
         } else {
           error.value = json.message;
         }

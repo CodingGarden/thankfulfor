@@ -39,6 +39,12 @@
             <input v-model="thanks.slug" class="input" type="text" placeholder="slug-here">
           </p>
         </div>
+        <div class="field">
+          <div class="control">
+            <input v-model="thanks.from" class="input" type="text" placeholder="Enter your name (optional)">
+          </div>
+        </div>
+        <hr>
         <button :class="{ 'is-loading': loading }" type="submit" class="button is-primary">Create</button>
       </fieldset>
     </form>
@@ -47,6 +53,12 @@
         <p>Your thanks is ready to share!</p>
         <a :href="url" target="_blank">{{url}}</a>
       </div>
+    </div>
+    <p class="help"><em>Your thanks message will look like this:</em></p>
+    <div>
+      <h2>{{thanks.name || "Name Here"}},</h2>
+      <p class="help">{{thanks.message || "Your message here."}}</p>
+      <p class="help">&mdash; {{thanks.from || "Anonymous"}}</p>
     </div>
   </div>
   <script type="module" src="js/client.js"></script>
