@@ -34,9 +34,6 @@ const App = {
       const json = await response.json();
       setTimeout(() => {
         if (response.ok) {
-          thanks.name = '';
-          thanks.message = '';
-          thanks.slug = '';
           let shareUrl = `${window.location.origin}/${json.slug}`;
           if (from) {
             shareUrl = `${url}?from=${from}`;
