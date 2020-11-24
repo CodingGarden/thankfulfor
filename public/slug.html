@@ -11,10 +11,15 @@
 </head>
 <body>
   <div id="app" v-cloak>
-    <div v-if="thanks">
-      <h2>{{thanks.name}},</h2>
-      <p class="help">{{thanks.message}}</p>
-      <p class="help">&mdash; {{from}}</p>
+    <div v-if="error" class="notification is-danger">
+      <p class="help">{{error}}</p>
+    </div>
+    <div class="thanks-message">
+      <div v-if="thanks">
+        <h2>{{thanks.name}},</h2>
+        <p class="help">{{thanks.message}}</p>
+        <p class="help">&mdash; {{from}}</p>
+      </div>
     </div>
   </div>
   <script type="module" src="js/slug.js"></script>

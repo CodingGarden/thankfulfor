@@ -1,7 +1,7 @@
 /* eslint-disable import/no-unresolved */
 /* eslint-disable import/extensions */
 
-import { createApp, ref, reactive } from 'https://unpkg.com/vue@3.0.2/dist/vue.esm-browser.js';
+import { createApp, ref, reactive, watch } from 'https://unpkg.com/vue@3.0.2/dist/vue.esm-browser.js';
 
 const App = {
   setup() {
@@ -15,13 +15,22 @@ const App = {
       from: '',
     });
 
+    watch(thanks, () => {
+      if (thanks.message.length > 280) {
+        thanks.message = thanks.message.slice(0, 280);
+      }
+    });
+
     const createThanks = async () => {
       error.value = '';
       loading.value = true;
-      const { from } = thanks;
+      let { from } = thanks;
       if (!thanks.slug) {
         thanks.slug = undefined;
       }
+      thanks.name = thanks.name.trim();
+      thanks.message = thanks.message.trim();
+      from = from.trim();
       thanks.from = undefined;
       const response = await fetch('/api/v1/thanks', {
         method: 'POST',

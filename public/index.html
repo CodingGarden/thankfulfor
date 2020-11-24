@@ -27,6 +27,7 @@
           <div class="control">
             <textarea v-model="thanks.message" class="textarea" placeholder="Enter a message."></textarea>
           </div>
+          <p class="help">Your message must be 280 characters or less. ({{thanks.message.length}} / 280)</p>
         </div>
         <p class="help">The slug is what will be in the URL. This is optional.</p>
         <div class="field has-addons">
@@ -55,10 +56,12 @@
       </div>
     </div>
     <p class="help"><em>Your thanks message will look like this:</em></p>
-    <div>
-      <h2>{{thanks.name || "Name Here"}},</h2>
-      <p class="help">{{thanks.message || "Your message here."}}</p>
-      <p class="help">&mdash; {{thanks.from || "Anonymous"}}</p>
+    <div class="thanks-message">
+      <div>
+        <h2>{{thanks.name || "Name Here"}},</h2>
+        <p class="help">{{thanks.message || "Your message here."}}</p>
+        <p class="help">&mdash; {{thanks.from || "Anonymous"}}</p>
+      </div>
     </div>
   </div>
   <script type="module" src="js/client.js"></script>
